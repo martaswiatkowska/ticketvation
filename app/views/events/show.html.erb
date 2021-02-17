@@ -19,6 +19,10 @@
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
+<p>
+  <strong>Place:</strong>
+  <%= @event.place.address %>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
