@@ -3,19 +3,13 @@
 class PaymentsController < ApplicationController
   def index
     @reservation = Reservation.find(params[:reservation_id])
-
-  end
-
-  def show
   end
 
   def new
     @reservation = Reservation.find(params[:reservation_id])
-
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @reservation = Reservation.find(params[:id])

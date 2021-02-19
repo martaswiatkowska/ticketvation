@@ -6,6 +6,7 @@ class Seat < ApplicationRecord
   has_many :reservations, through: :seat_reservations
   
   def available?
+    # TODO counter cache?
     seat_reservations.count == 0
   end
 end

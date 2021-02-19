@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class ReservationFlowTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  test "Reservation flow" do
+    
+  end
 end
