@@ -3,7 +3,7 @@
 one:
   name: MyString
   surname: MyString
-  email: MyString
+  email: mystring@only.my
   status: MyString
   event: one
 
