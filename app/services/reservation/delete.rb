@@ -8,7 +8,7 @@ class Reservation::Delete
   def call
     if @reservation.waiting_for_payment?
       @reservation.canceled!
-      # TODO sand email 
+      @reservation.seats.each { |s| s.reservation.delete_all }
     end
   end
 end
