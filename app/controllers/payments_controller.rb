@@ -23,11 +23,11 @@ class PaymentsController < ApplicationController
 
     charge = Stripe::Charge.create(
       amount: @reservation.amount,
-      currency: "eur",
+      currency: "EUR",
       description: "Payment for reservation: %s" % @reservation.id,
       source: token
     )
-    
+    # Adapters::Payment::Getway.new(@reservation.amount, token).charge 
     Reservation::Update.new(status: :confirmed).call
     redirect_to events_path, notice: "Payment success. Your reservation is confirmed"
 
