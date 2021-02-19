@@ -7,7 +7,7 @@ class Reservation::Delete
 
   def call
     if @reservation.waiting_for_payment?
-      @reservation.delete
+      @reservation.canceled!
       # TODO sand email 
     end
   end

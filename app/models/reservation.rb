@@ -3,7 +3,8 @@
 class Reservation < ApplicationRecord
   enum status: {
     waiting_for_payment: "waiting_for_payment",
-    confirmed: "confirmed"
+    confirmed: "confirmed",
+    canceled: "canceled"
   }
 
   belongs_to :event
