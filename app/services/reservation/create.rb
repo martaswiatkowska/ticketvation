@@ -6,8 +6,11 @@ class Reservation::Create
   end
 
   def call
+    @reservation.status = :waiting_for_payment
+    # TODO 15 put in env value
+    # TODO tys should be counted in front 
+    @reservation.amount = 15*@serervation.seats.count
     if @reservation.save
-      # TODO add sidekick
       Reservation::DeleteJob.set(wait_until: 15.minutes.from_now)
         .perform_later(@reservation)
       # TODO send email
