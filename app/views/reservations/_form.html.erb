@@ -22,19 +22,48 @@
     <%= form.label :surname %>
     <%= form.text_field :surname %>
   </div>
-  
+
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email , type: :email%>
   </div>
   <span> Billet price: 15 EUR</span>
   <div class="field">
     <%= form.label :seats %>
-    <% @seats.each do |a_value| %>
-      <%= form.check_box(:seat_ids, { :multiple => true }, a_value.id, nil) %>
-    <% end %>
+    <tablea>
+      <tr>Screen</tr>
+      <tr>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <% @seats.where(row: "A").each do |seat| %>
+          <td>
+            <%= form.check_box(:seat_ids, { :multiple => true, disabled: seat.available? }, seat.id, nil) %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>B</td>
+        <% @seats.where(row: "B").each do |seat| %>
+          <td>
+            <%= form.check_box(:seat_ids, { :multiple => true, disabled: seat.available? }, seat.id, nil) %>
+          </td>  
+        <% end %>
+      </tr>
+    </table>
+
   </div>
-  
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
