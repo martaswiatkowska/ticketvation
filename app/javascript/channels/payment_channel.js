@@ -27,14 +27,18 @@ document.addEventListener("turbolinks:load", function() {
 
     // Stripe injects an iframe into the DOM
     card.mount(cardElement);
-    card.on("change", function (event) {
-      // Disable the Pay button if there are no card details in the Element
-      document.querySelector("button").disabled = event.empty;
-      document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+    
+    card.addEventListener('change', ({error}) => {
+      const displayError = document.getElementById('card-errors');
+      if (error) {
+        displayError.textContent = error.message;
+      } else {
+        displayError.textContent = '';
+      }
     });
 
-     const form = document.querySelector('.payment-form');
-      form.addEventListener('submit', async (event) => {
+    const form = document.querySelector('#payment-form');
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const {token, error} = await stripe.createToken(card);
@@ -46,13 +50,14 @@ document.addEventListener("turbolinks:load", function() {
       } else {
         // Send the token to your server.
         stripeTokenHandler(token);
+
       }
     }); 
   
 
     const stripeTokenHandler = (token) => {
       // Insert the token ID into the form so it gets submitted to the server
-      const form = document.querySelector('.payment-form');
+      const form = document.querySelector('#payment-form');
       const hiddenInput = document.createElement('input');
       hiddenInput.setAttribute('type', 'hidden');
       hiddenInput.setAttribute('name', 'stripeToken');
@@ -76,6 +81,5 @@ document.addEventListener("turbolinks:load", function() {
         form.appendChild(hiddenInput);
       }
     }
-
 })
 

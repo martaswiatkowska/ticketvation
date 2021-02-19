@@ -7,22 +7,32 @@ class ReservationsController < ApplicationController
     @event = Event.joins(:place).find(params[:event])
     @reservation = Reservation.new(event: @event)
     @seats = @event.place.seats
-  end  
-  
+  end
+
   def create
-    @event = Event.find(params[:event_id])
-    #@reservation = Reservation.new(event_params, event: @event)
-    @reservation = Reservation::Create.new(event_arams).call
-    
+    @event = Event.find(params[:reservation][:event_id])
+    @reservation = Reservation::Create.new(reservation_template).call
+
     if @reservation.persisted?
-      redirect_to events_path
+      redirect_to  new_payment_path(reservation_id: @reservation)
     else
       render :new, status: :bad_request
     end
   end
+  
+  def edit
+   @reservation = Reservation.find(params[:id])
+  end
+  
+  def update; end
 
   private
-    def event_params
-      params.require(:reservation).permit(:name, :surname, :email, :event_id, [seat_ids: []])
+
+    def reservation_params
+      params.require(:reservation).permit(:name, :surname, :email, :event_id, [seat_ids: []], :amount)
+    end
+    
+    def reservation_template
+      Reservation.new(reservation_params)
     end
 end

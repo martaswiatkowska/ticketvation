@@ -1,0 +1,15 @@
+<form id="payment-form">
+  <div>
+    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+    <%= hidden_field nil, :reservation_id, value: @reservation.id %>
+  </div>
+  <p id="card-error" role="alert"></p>
+  <p class="result-message hidden">
+    Payment succeeded, see the result in your
+    <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+  </p>
+
+  <div class="actions">
+    <%= submit_tag "Pay for reservation", class: "create_button" %>
+  </div>
+</form>
