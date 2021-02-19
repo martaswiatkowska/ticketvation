@@ -5,6 +5,7 @@ one:
   end_date: 2021-02-17
   name: MyString
   description: MyText
+  place: :one
 
 two:
   start_date: 2021-02-17

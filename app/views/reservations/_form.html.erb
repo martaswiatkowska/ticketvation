@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div>
-    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.hidden_field :event_id, value: event.id %>
   </div>
   <div class="field">
     <%= form.label :name %>
@@ -30,7 +30,7 @@
   <span> Billet price: 15 EUR</span>
   <div class="field">
     <%= form.label :seats %>
-    <tablea>
+    <table>
       <tr>Screen</tr>
       <tr>
         <td></td>
@@ -45,7 +45,7 @@
       </tr>
       <tr>
         <td>A</td>
-        <% @seats.where(row: "A").each do |seat| %>
+        <% seats_for_row(seats, "A").each do |seat| %>
           <td>
             <%= form.check_box(:seat_ids, { :multiple => true, disabled: seat.available? }, seat.id, nil) %>
           </td>
@@ -53,7 +53,7 @@
       </tr>
       <tr>
         <td>B</td>
-        <% @seats.where(row: "B").each do |seat| %>
+        <% seats_for_row(seats, "B").each do |seat| %>
           <td>
             <%= form.check_box(:seat_ids, { :multiple => true, disabled: seat.available? }, seat.id, nil) %>
           </td>  
