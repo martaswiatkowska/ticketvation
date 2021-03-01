@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
+    # todo to service
     @event = Event.new(event_params)
 
     if @event.save
