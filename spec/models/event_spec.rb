@@ -3,5 +3,5 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  it { should belongs_to :place } 
+  it { should belong_to :place } 
 end
