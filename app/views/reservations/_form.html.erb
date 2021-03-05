@@ -47,7 +47,7 @@
         <td>A</td>
         <% seats_for_row(seats, "A").each do |seat| %>
           <td>
-            <%= form.check_box(:seat_ids, { :multiple => true, disabled: seat.available? }, seat.id, nil) %>
+            <%= form.check_box(:seat_ids, { :multiple => true, disabled: !seat.available? }, seat.id, nil) %>
           </td>
         <% end %>
       </tr>
