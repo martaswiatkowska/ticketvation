@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:name) { |n| "#{n} event" }
     sequence(:description)  { |n| "#{n} description" }
     start_date { 2.days.from_now }
-    start_date { 10.days.from_now }
+    end_date { 10.days.from_now }
     place
   end
 end

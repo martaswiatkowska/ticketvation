@@ -13,6 +13,4 @@ class Reservation < ApplicationRecord
     counter_cache: :seats_count
   
   validates :seats_count, numericality: { even: true }
-  
-
 end
