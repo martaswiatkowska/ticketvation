@@ -8,6 +8,7 @@ RSpec.feature "Reservations", type: :feature do
     place = create(:place, seats: seats)
     create(:event, place: place)
   end
+
   scenario "user can make reservation" do
     visit events_path
 

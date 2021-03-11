@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def index
     @events = Event.all
@@ -16,10 +16,9 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
-    # todo to service
     @event = Event.new(event_params)
 
-    if @event.save
+    if Event::Create.new(@event).call
       redirect_to @event, notice: "Event was successfully created"
     else
       render :new, status: :bad_request
@@ -27,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update(event_params)
+    if Event::Update.new(event_params).call
       redirect_to @event, notice: "Event was successfully created"
     else
       render :new, status: :bad_request
