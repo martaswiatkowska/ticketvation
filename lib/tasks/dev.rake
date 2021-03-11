@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :dev do
-  task prime: "db:setup" do 
+  task prime: "db:setup" do
     puts "Creating Place"
     place = Place.create(name: "Super Uber Place", address: "Sesame Street 49/17 United State")
     Seat.create(row: "A", seat_number: 1, place: place)
@@ -22,4 +22,3 @@ namespace :dev do
     Seat.create(row: "B", seat_number: 8, place: place)
   end
 end
-

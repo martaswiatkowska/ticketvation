@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "Reservations", type: :feature do
   before(:each) do
     seats = create_list(:seat, 4, row: "A")
     place = create(:place, seats: seats)
-    event = create(:event, place: place)
+    create(:event, place: place)
   end
   scenario "user can make reservation" do
     visit events_path
@@ -19,8 +19,8 @@ RSpec.feature "Reservations", type: :feature do
     match = find_all("input", id: /reservation_seat_ids_*/)
     match[1].click
     match[2].click
-    
-    click_on "Create Reservation"  
+
+    click_on "Create Reservation"
     expect(page).to have_text("Pay for Reservation")
   end
 end

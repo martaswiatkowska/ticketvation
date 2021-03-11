@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
     @seats = @event.place.seats
 
     @reservation = Reservation::Create.new(reservation_template).call
-    
+
     if @reservation.persisted?
       redirect_to  new_payment_path(reservation_id: @reservation)
     else
@@ -25,7 +25,6 @@ class ReservationsController < ApplicationController
   end
 
   private
-
     def reservation_params
       params.require(:reservation).permit(:name, :surname, :email, :event_id, [seat_ids: []], :amount)
     end

@@ -4,7 +4,7 @@ class Seat < ApplicationRecord
   belongs_to :place
   has_many :seat_reservations, dependent: :delete_all
   has_many :reservations, through: :seat_reservations
-  
+
   def available?
     # TODO counter cache?
     seat_reservations.count == 0
