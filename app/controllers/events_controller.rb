@@ -38,6 +38,11 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: "Event was successfully destroyed."
   end
 
+  def event_list
+    output = Event::EventList.new(params).call
+    render json: output.to_json(only: [:name])
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])

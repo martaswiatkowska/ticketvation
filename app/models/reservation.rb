@@ -7,10 +7,11 @@ class Reservation < ApplicationRecord
     canceled: "canceled"
   }
 
-  belongs_to :event
+  belongs_to :event, counter_cache: true
   has_many :seat_reservations
   has_many :seats, through: :seat_reservations,
     counter_cache: :seats_count
-
+  
+  #TOdo rename
   validates :seats_count, numericality: { even: true }
 end

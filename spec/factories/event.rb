@@ -6,6 +6,7 @@ FactoryBot.define do
     sequence(:description)  { |n| "#{n} description" }
     start_date { 2.days.from_now }
     end_date { 10.days.from_now }
+    reservations_count { 0 }
     place
   end
 end
